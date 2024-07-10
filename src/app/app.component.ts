@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from './core/services/loader.service';
 import { WeatherService } from './core/services/weather.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,9 +11,8 @@ import { WeatherService } from './core/services/weather.service';
 })
 export class AppComponent implements OnInit {
   displayLoading = false;
-    
-  constructor(private loaderService: LoaderService, private weatherService: WeatherService) {}
 
+  constructor(private loaderService: LoaderService, private weatherService: WeatherService, private router: Router) { }
   ngOnInit() {
     this.loaderService.stateChange.subscribe((loaderState) => {
       setTimeout(() => {
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   changeTemperatureUnit() {
     this.weatherService.isMetric = !this.weatherService.isMetric;
-
     this.weatherService.temperatureUnitChanged.next(null);
   }
+
 }

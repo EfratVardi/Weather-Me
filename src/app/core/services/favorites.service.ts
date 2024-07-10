@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Location } from 'src/app/shared/models/location.model';
+import { MyLocation } from 'src/app/shared/models/location.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
-  private favorites: Location[] = [];
+  private favorites: MyLocation[] = [];
 
-  addToFavorites(location: Location): void {
+  addToFavorites(location: MyLocation): void {
     this.favorites.push(location);
   }
 
@@ -16,7 +16,7 @@ export class FavoritesService {
     this.favorites.splice(cityToRemoveIndex, 1);
   }
 
-  getFavorites(): Location[] {
+  getFavorites(): MyLocation[] {
     return this.favorites;
   }
 }

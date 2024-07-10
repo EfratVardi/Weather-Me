@@ -10,10 +10,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './formControls/card/card.component';
+import { ChipsComponent } from './formControls/chips/chips.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
-    CardComponent
+    CardComponent,
+    ChipsComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { CardComponent } from './formControls/card/card.component';
     MatSlideToggleModule,
     MatInputModule,
     MatCardModule,
+    MatChipsModule
   ],
   exports: [
     MatIconModule, 
@@ -38,7 +42,8 @@ import { CardComponent } from './formControls/card/card.component';
     MatProgressBarModule,
     MatSlideToggleModule,
     MatInputModule,
-    CardComponent
+    CardComponent,
+    ChipsComponent
   ],
 })
 export class SharedModule { }

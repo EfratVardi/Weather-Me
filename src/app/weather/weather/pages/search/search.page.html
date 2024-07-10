@@ -10,9 +10,5 @@
         Only English letters are allowed.
     </mat-error>
 </mat-form-field>
+<router-outlet></router-outlet>
 
-<div *ngIf="forecastData?.DailyForecasts.length > 0">
-    <app-card *ngFor="let day of forecastData.DailyForecasts" [subtitle]="day.Temperature.Minimum+' °C'"
-        [title]="day.Date | date: 'mediumDate'" [icon]="day.Icon">
-    </app-card>
-</div>

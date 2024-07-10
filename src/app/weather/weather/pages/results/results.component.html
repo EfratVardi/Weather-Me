@@ -1,0 +1,11 @@
+<h1>{{localizedName}}</h1>
+
+<app-card [subtitle]="currentWeather.Temperature.Metric.Value+' °C'" [title]="currentWeather.LocalObservationDateTime | date: 'mediumDate'"
+    [icon]="currentWeather.WeatherIcon" [content]="currentWeather.WeatherText">
+</app-card>
+<br>
+<div *ngIf="forecastData?.DailyForecasts.length > 0">
+    <app-card *ngFor="let day of forecastData.DailyForecasts" [subtitle]="day.Temperature.Minimum.Value+' °C'"
+        [title]="day.Date | date: 'mediumDate'" [icon]="day.Icon">
+    </app-card>
+</div>
