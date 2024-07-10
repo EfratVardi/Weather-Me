@@ -7,9 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import { CardComponent } from './formControls/card/card.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CardComponent
+  ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -20,6 +25,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatProgressBarModule,
     MatSlideToggleModule,
+    MatInputModule,
+    MatCardModule,
   ],
   exports: [
     MatIconModule, 
@@ -30,6 +37,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatProgressBarModule,
     MatSlideToggleModule,
+    MatInputModule,
+    CardComponent
   ],
 })
 export class SharedModule { }

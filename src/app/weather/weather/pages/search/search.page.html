@@ -1,0 +1,18 @@
+<mat-form-field appearance="fill">
+    <mat-label>location</mat-label>
+    <input type="text" matInput [formControl]="locationCtrl" [matAutocomplete]="auto" appEnglishOnly>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLocation" (optionSelected)="onLocationSelected($event)">
+        <mat-option *ngFor="let location of filteredLocations | async" [value]="location">
+            {{ location.LocalizedName }}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="locationCtrl.hasError('nonEnglish')">
+        Only English letters are allowed.
+    </mat-error>
+</mat-form-field>
+
+<div *ngIf="forecastData?.DailyForecasts.length > 0">
+    <app-card *ngFor="let day of forecastData.DailyForecasts" [subtitle]="day.Temperature.Minimum+' °C'"
+        [title]="day.Date | date: 'mediumDate'" [icon]="day.Icon">
+    </app-card>
+</div>
