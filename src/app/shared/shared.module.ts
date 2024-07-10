@@ -12,11 +12,14 @@ import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './formControls/card/card.component';
 import { ChipsComponent } from './formControls/chips/chips.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { TextGeneratorComponent } from './formControls/text-generator/text-generator.component';
+import { OpenAIService } from '../core/services/openai.service';
 
 @NgModule({
   declarations: [
     CardComponent,
-    ChipsComponent
+    ChipsComponent,
+    TextGeneratorComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSlideToggleModule,
     MatInputModule,
     CardComponent,
-    ChipsComponent
-  ],
+    ChipsComponent,
+    TextGeneratorComponent
+  ]
 })
 export class SharedModule { }

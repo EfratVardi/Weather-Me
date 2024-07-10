@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CurrentWeather } from '../../models/currentWeather.model';
 
 @Component({
   selector: 'app-card',

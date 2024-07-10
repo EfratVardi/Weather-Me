@@ -15,7 +15,6 @@ export class FavoriteButtonComponent {
 
   toggleFavorite() {
     this.favoritesList = this.favoritesService.getFavorites();
-
     const isFavorite = this.isFavorite()
 
     if (isFavorite) {
@@ -24,8 +23,8 @@ export class FavoriteButtonComponent {
       this.favoritesService.addToFavorites(this.location)
     }
   }
-
+  
   isFavorite(): boolean {
-    return this.favoritesList.some(favorite => favorite.Key = this.location.Key);
+    return this.favoritesService.isFavorite(this.location.Key);
   }
 }

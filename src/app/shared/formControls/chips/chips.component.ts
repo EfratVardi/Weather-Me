@@ -7,7 +7,7 @@ import { FavoritesService } from 'src/app/core/services/favorites.service';
   styleUrls: ['./chips.component.scss']
 })
 export class ChipsComponent {
-  @Input() chipsList:any [] = [];
+  @Input() chipsList: { key: string, value: any }[] = [];
   @Output() chipRemoved = new EventEmitter<string>();
 
   constructor() { }

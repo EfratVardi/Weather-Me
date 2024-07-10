@@ -1,7 +1,8 @@
 <h1>{{localizedName}}</h1>
 
-<app-card [subtitle]="currentWeather.Temperature.Metric.Value+' °C'" [title]="currentWeather.LocalObservationDateTime | date: 'mediumDate'"
-    [icon]="currentWeather.WeatherIcon" [content]="currentWeather.WeatherText">
+<app-card [subtitle]="currentWeather.Temperature.Metric.Value+' °C'"
+    [title]="currentWeather.LocalObservationDateTime | date: 'mediumDate'" [icon]="currentWeather.WeatherIcon"
+    [content]="currentWeather.WeatherText">
 </app-card>
 <br>
 <div *ngIf="forecastData?.DailyForecasts.length > 0">
@@ -9,3 +10,7 @@
         [title]="day.Date | date: 'mediumDate'" [icon]="day.Icon">
     </app-card>
 </div>
+
+<ng-container *ngIf="prompt">
+    <app-text-generator [prompt]="prompt"></app-text-generator>
+</ng-container>

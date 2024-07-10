@@ -1,6 +1,6 @@
 <mat-chip-list>
-    <mat-chip *ngFor="let chip of chipsList" removable (removed)="removeChip(chip.key)">
-        {{ chip.Value }}
+    <mat-chip *ngFor="let chip of chipsList" removable (removed)="removeChip(chip.Key)">
+        {{ chip.LocalizedName }}
         <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
 </mat-chip-list>

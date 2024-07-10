@@ -12,7 +12,9 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
 export class ResultsComponent implements OnInit {
   currentWeather: CurrentWeather | null = null;
   forecastData: Forecast | null = null;
-  localizedName:string;
+  localizedName: string;
+  prompt: string | null = null;
+
   constructor(private route: ActivatedRoute, private weatherService: WeatherService) { }
 
   ngOnInit(): void {
@@ -21,29 +23,30 @@ export class ResultsComponent implements OnInit {
       this.localizedName = params.get('localizedName')
       if (locationKey) {
         this.currentWeather = {
-        "LocalObservationDateTime": "2024-07-10T10:00:00-04:00",
-        "EpochTime": 1625923200,
-        "WeatherText": "Sunny",
-        "WeatherIcon": 1,
-        "HasPrecipitation": false,
-        "PrecipitationType": null,
-        "PrecipitationIntensity": null,
-        "IsDayTime": true,
-        "Temperature": {
-          "Metric": {
-            "Value": 25.6,
-            "Unit": "C",
-            "UnitType": 17
+          "LocalObservationDateTime": "2024-07-10T10:00:00-04:00",
+          "EpochTime": 1625923200,
+          "WeatherText": "Sunny",
+          "WeatherIcon": 1,
+          "HasPrecipitation": false,
+          "PrecipitationType": null,
+          "PrecipitationIntensity": null,
+          "IsDayTime": true,
+          "Temperature": {
+            "Metric": {
+              "Value": 25.6,
+              "Unit": "C",
+              "UnitType": 17
+            },
+            "Imperial": {
+              "Value": 78.1,
+              "Unit": "F",
+              "UnitType": 18
+            }
           },
-          "Imperial": {
-            "Value": 78.1,
-            "Unit": "F",
-            "UnitType": 18
-          }
-        },
-        "MobileLink": "http://m.accuweather.com/en/us/new-york-ny/10007/current-weather/349727",
-        "Link": "http://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727"
-      };
+          "MobileLink": "http://m.accuweather.com/en/us/new-york-ny/10007/current-weather/349727",
+          "Link": "http://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727"
+        };
+        // this.generatPrompt()
         this.forecastData = {
           "Headline": {
             "EffectiveDate": "2024-07-10T08:00:00+03:00",
@@ -224,6 +227,7 @@ export class ResultsComponent implements OnInit {
     this.weatherService.getCurrentWeather(locationKey).subscribe(
       (currentWeather: CurrentWeather) => {
         this.currentWeather = currentWeather;
+        this.generatPrompt()
       },
       (error) => {
         console.error('Error fetching currentWeather:', error);
@@ -241,4 +245,17 @@ export class ResultsComponent implements OnInit {
       }
     );
   }
+
+  generatPrompt() {
+    const prompt: string = 'Give me recommendations on what to wear on a {dayDescription} day {temperature} Celsius in {city} in maximum 100 words';
+    const dayDescription = this.currentWeather.WeatherText
+    const temperature = this.currentWeather.Temperature.Metric.Value;
+    const location = this.localizedName;
+
+    this.prompt = prompt
+      .replace('{dayDescription}', dayDescription)
+      .replace('{temperature}', temperature.toString())
+      .replace('{city}', location)
+  };
 }
+
