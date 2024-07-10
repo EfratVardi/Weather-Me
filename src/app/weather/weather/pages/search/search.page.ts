@@ -16,6 +16,7 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 export class SearchPage {
   locationCtrl = new FormControl();
   filteredLocations: Observable<MyLocation[]>;
+  selectedLocation: MyLocation | null = null;
 
   constructor(private locationService: LocationService, private router: Router, private route: ActivatedRoute) { }
 
@@ -48,8 +49,8 @@ export class SearchPage {
   }
 
   onLocationSelected(event: any) {
-    const selectedLocation: MyLocation = event.option.value;
-    this.router.navigate([`/search/results/${selectedLocation.Key}/${selectedLocation.LocalizedName}`]);
+    this.selectedLocation = event.option.value;
+    this.router.navigate([`/search/results/${this.selectedLocation.Key}/${this.selectedLocation.LocalizedName}`]);
   }
 
 
