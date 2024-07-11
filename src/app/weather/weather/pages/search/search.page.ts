@@ -3,9 +3,6 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Observable, switchMap } from 'rxjs';
 import { LocationService } from 'src/app/core/services/location.service';
-import { WeatherService } from 'src/app/core/services/weather.service';
-import { CurrentWeather } from 'src/app/shared/models/currentWeather.model';
-import { Forecast } from 'src/app/shared/models/forecast.model';
 import { MyLocation } from 'src/app/shared/models/location.model';
 
 @Component({
@@ -15,7 +12,7 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 })
 export class SearchPage {
   locationCtrl = new FormControl();
-  filteredLocations: Observable<MyLocation[]>;
+  filteredLocations: Observable<MyLocation[]>|null=null;
   selectedLocation: MyLocation | null = null;
 
   constructor(private locationService: LocationService, private router: Router, private route: ActivatedRoute) { }
@@ -50,7 +47,7 @@ export class SearchPage {
 
   onLocationSelected(event: any) {
     this.selectedLocation = event.option.value;
-    this.router.navigate([`/search/results/${this.selectedLocation.Key}/${this.selectedLocation.LocalizedName}`]);
+    this.router.navigate([`/search/results/${this.selectedLocation?.Key}/${this.selectedLocation?.LocalizedName}`]);
   }
 
 

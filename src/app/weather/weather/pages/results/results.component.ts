@@ -12,7 +12,7 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
 export class ResultsComponent implements OnInit {
   currentWeather: CurrentWeather | null = null;
   forecastData: Forecast | null = null;
-  localizedName: string;
+  localizedName: string | null=null;
   prompt: string | null = null;
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherService) { }
@@ -248,8 +248,8 @@ export class ResultsComponent implements OnInit {
 
   generatPrompt() {
     const prompt: string = 'Give me recommendations on what to wear on a {dayDescription} day {temperature} Celsius in {city} in maximum 100 words';
-    const dayDescription = this.currentWeather.WeatherText
-    const temperature = this.currentWeather.Temperature.Metric.Value;
+    const dayDescription = this.currentWeather?.WeatherText
+    const temperature = this.currentWeather?.Temperature.Metric.Value;
     const location = this.localizedName;
 
     this.prompt = prompt

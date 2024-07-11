@@ -10,11 +10,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2018",
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
