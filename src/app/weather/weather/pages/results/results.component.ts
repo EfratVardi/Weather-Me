@@ -56,7 +56,7 @@ export class ResultsComponent implements OnInit {
   }
 
   generatPrompt() {
-    const prompt: string = 'Give me recommendations on what to wear on a {dayDescription} day {temperature} Celsius in {city} in maximum 100 words';
+    const prompt: string = 'Give me recommendations on what to wear on a {dayDescription} day {temperature}' + this.unit + 'in {city} in maximum 100 words';
     const dayDescription = this.currentWeather?.WeatherText
     const temperature = this.currentWeather?.Temperature.Metric.Value;
     const location = this.localizedName;
@@ -80,8 +80,11 @@ export class ResultsComponent implements OnInit {
   }
 
   getUrl(icon) {
-    return 'https://developer.accuweather.com/sites/default/files/' + this.padWithZero(icon,2) + '-s.png'
+    return 'https://developer.accuweather.com/sites/default/files/' + this.padWithZero(icon, 2) + '-s.png'
+  }
 
+  rand(num: number) {
+    return Math.floor(num);
   }
 
 }

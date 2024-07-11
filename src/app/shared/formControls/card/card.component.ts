@@ -10,7 +10,6 @@ export class CardComponent {
   @Input() subtitle: string;
   @Input() url: string;
   @Input() content: string;
-  @Input() icon: string;
 
   constructor() {
   }

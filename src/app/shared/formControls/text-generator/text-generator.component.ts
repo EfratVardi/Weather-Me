@@ -7,8 +7,6 @@ import { OpenAIService } from 'src/app/core/services/openai.service';
   templateUrl: './text-generator.component.html'})
 export class TextGeneratorComponent {
   @Input() prompt: string;
-  @Input() icon: string;
-
   generatedText: string = '';
 
   constructor(private openaiService: OpenAIService,private errorModalService: ErrorModalService) { }
