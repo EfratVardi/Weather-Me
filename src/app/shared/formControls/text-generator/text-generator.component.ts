@@ -11,14 +11,18 @@ export class TextGeneratorComponent {
 
   constructor(private openaiService: OpenAIService,private errorModalService: ErrorModalService) { }
   ngOnInit(): void {
+  }
+
+  showError(error:string) {
+    this.errorModalService.openErrorModal('Error', error);
+  }
+
+  ngOnChanges() {
     this.openaiService.generateText(this.prompt).subscribe(response => {
       this.generatedText = response.choices[0].message.content;
     }, error => {
       this.showError('Error generating text')
     });
-  }
 
-  showError(error:string) {
-    this.errorModalService.openErrorModal('Error', error);
   }
 }
