@@ -8,9 +8,12 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() title: string;
   @Input() subtitle: string;
-  @Input() icon: string;
+  @Input() url: string;
   @Input() content: string;
+  @Input() icon: string;
 
+  constructor() {
+  }
 
-  constructor() { }
+  
 }

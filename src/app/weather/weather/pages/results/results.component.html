@@ -3,13 +3,15 @@
         {{localizedName}}
     </div>
     <div class="col-span-5">
-        <app-card [title]="currentWeather?.Temperature?.Metric?.Value+' °C'"
-            [subtitle]="currentWeather?.LocalObservationDateTime | DateFormat" [icon]="currentWeather?.WeatherIcon"
+        <app-card *ngIf="currentWeather"
+            [title]="isMetric?currentWeather?.Temperature?.Metric?.Value+unit:currentWeather?.Temperature?.Imperial?.Value+unit"
+            [subtitle]="currentWeather?.LocalObservationDateTime | DateFormat" [url]="getUrl(currentWeather?.WeatherIcon)"
             [content]="currentWeather?.WeatherText">
         </app-card>
     </div>
     <app-card class="col-span-1" *ngFor="let day of forecastData?.DailyForecasts"
-        [title]="day.Temperature.Minimum.Value+' °C'" [subtitle]="day.Date | DateFormat" [icon]="day.Day.IconPhrase">
+        [title]="day.Temperature.Minimum.Value + unit + ' - '+ day.Temperature.Maximum.Value + unit"
+        [subtitle]="day.Date | DateFormat" [url]="getUrl(day.Day.Icon)">
     </app-card>
     <app-text-generator class="col-span-3 col-start-2" *ngIf="prompt" [prompt]="prompt"
         [icon]="'home'"></app-text-generator>

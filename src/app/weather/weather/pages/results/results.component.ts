@@ -7,16 +7,17 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
 
 @Component({
   selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  templateUrl: './results.component.html'
 })
 export class ResultsComponent implements OnInit {
   currentWeather: CurrentWeather | null = null;
   forecastData: Forecast | null = null;
   localizedName: string | null = null;
   prompt: string | null = null;
-
-  constructor(private route: ActivatedRoute, private weatherService: WeatherService,private errorModalService: ErrorModalService) { }
+  unit: string | null = null;
+  isMetric: boolean = true;
+  url: string | null = null;
+  constructor(private route: ActivatedRoute, private weatherService: WeatherService, private errorModalService: ErrorModalService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -27,6 +28,8 @@ export class ResultsComponent implements OnInit {
         this.fetchForecast(locationKey);
       }
     });
+    this.isMetric = this.weatherService.isMetric;
+    this.unit = this.isMetric ? ' °C' : ' °F';
   }
 
   fetchCurrentWeather(locationKey: string) {
@@ -64,8 +67,21 @@ export class ResultsComponent implements OnInit {
       .replace('{city}', location)
   };
 
-  showError(error:string) {
+  showError(error: string) {
     this.errorModalService.openErrorModal('Error', error);
+  }
+
+  padWithZero(num: number, size: number): string {
+    let numStr = num.toString();
+    while (numStr.length < size) {
+      numStr = '0' + numStr;
+    }
+    return numStr;
+  }
+
+  getUrl(icon) {
+    return 'https://developer.accuweather.com/sites/default/files/' + this.padWithZero(icon,2) + '-s.png'
+
   }
 
 }

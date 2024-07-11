@@ -5,9 +5,7 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 
 @Component({
   selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.scss']
-})
+  templateUrl: './favorites.component.html'})
 export class FavoritesComponent implements OnInit {
   favoritesList: MyLocation[] = [];
 

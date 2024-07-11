@@ -7,9 +7,7 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.page.html',
-  styleUrls: ['./search.page.scss']
-})
+  templateUrl: './search.page.html'})
 export class SearchPage {
   locationCtrl = new FormControl();
   filteredLocations: Observable<MyLocation[]> | null = null;

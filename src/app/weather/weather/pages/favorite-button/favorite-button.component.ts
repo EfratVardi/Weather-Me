@@ -4,9 +4,8 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 
 @Component({
   selector: 'app-favorite-button',
-  templateUrl: './favorite-button.component.html',
-  styleUrls: ['./favorite-button.component.scss']
-})
+  templateUrl: './favorite-button.component.html'})
+  
 export class FavoriteButtonComponent {
   @Input() location: MyLocation;
   favoritesList: MyLocation[] = [];

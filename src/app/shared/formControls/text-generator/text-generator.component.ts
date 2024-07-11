@@ -4,9 +4,7 @@ import { OpenAIService } from 'src/app/core/services/openai.service';
 
 @Component({
   selector: 'app-text-generator',
-  templateUrl: './text-generator.component.html',
-  styleUrls: ['./text-generator.component.scss']
-})
+  templateUrl: './text-generator.component.html'})
 export class TextGeneratorComponent {
   @Input() prompt: string;
   @Input() icon: string;
