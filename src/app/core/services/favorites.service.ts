@@ -25,7 +25,10 @@ export class FavoritesService {
   }
 
   removeFromFavorites(locationKey: string): void {
-    this.favorites = this.favorites.filter(location => location.Key !== locationKey);
+    const index = this.favorites.findIndex(location => location.Key === locationKey);
+    if (index !== -1) {
+      this.favorites.splice(index, 1);
+    }
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.favorites));
   }
 
