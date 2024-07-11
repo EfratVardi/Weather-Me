@@ -15,13 +15,16 @@ import { MatChipsModule } from '@angular/material/chips';
 import { TextGeneratorComponent } from './formControls/text-generator/text-generator.component';
 import { OpenAIService } from '../core/services/openai.service';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { ErrorModalComponent } from './formControls/error-modal/error-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     CardComponent,
     ChipsComponent,
     TextGeneratorComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    ErrorModalComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,9 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatSlideToggleModule,
     MatInputModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+
   ],
   exports: [
     MatIconModule, 
@@ -50,7 +55,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     CardComponent,
     ChipsComponent,
     TextGeneratorComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    ErrorModalComponent
   ]
 })
 export class SharedModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ErrorModalService } from 'src/app/core/services/error-modal.service';
 import { WeatherService } from 'src/app/core/services/weather.service';
 import { CurrentWeather } from 'src/app/shared/models/currentWeather.model';
 import { Forecast } from 'src/app/shared/models/forecast.model';
@@ -12,10 +13,10 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
 export class ResultsComponent implements OnInit {
   currentWeather: CurrentWeather | null = null;
   forecastData: Forecast | null = null;
-  localizedName: string | null=null;
+  localizedName: string | null = null;
   prompt: string | null = null;
 
-  constructor(private route: ActivatedRoute, private weatherService: WeatherService) { }
+  constructor(private route: ActivatedRoute, private weatherService: WeatherService,private errorModalService: ErrorModalService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -23,7 +24,7 @@ export class ResultsComponent implements OnInit {
       this.localizedName = params.get('localizedName')
       if (locationKey) {
         this.fetchCurrentWeather(locationKey);
-         this.fetchForecast(locationKey);
+        this.fetchForecast(locationKey);
       }
     });
   }
@@ -35,7 +36,7 @@ export class ResultsComponent implements OnInit {
         this.generatPrompt()
       },
       (error) => {
-        console.error('Error fetching currentWeather:', error);
+        this.showError('Error fetching currentWeather')
       }
     );
   }
@@ -46,7 +47,7 @@ export class ResultsComponent implements OnInit {
         this.forecastData = forecastData;
       },
       (error) => {
-        console.error('Error fetching forecast:', error);
+        this.showError('Error fetching forecast')
       }
     );
   }
@@ -62,5 +63,10 @@ export class ResultsComponent implements OnInit {
       .replace('{temperature}', temperature.toString())
       .replace('{city}', location)
   };
+
+  showError(error:string) {
+    this.errorModalService.openErrorModal('Error', error);
+  }
+
 }
 
