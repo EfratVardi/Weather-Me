@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiKey: 'RZr95L4j0RlOIta6tbuIsAkooy1Ybrce',
-  openaiApiKey:'sk-proj-8RFRTR62wjRKCy3DWEznT3BlbkFJzvwcUVetkNgUge1cJ0q7'
+  // apiKey: 'RZr95L4j0RlOIta6tbuIsAkooy1Ybrce',
+  apiKey: '95yHyVAAIztpB9hwi3JfZZo9AztJXTYF',
+  openaiApiKey:'sk-proj-EG4l6xPtoM7qS4kxVyYpT3BlbkFJeJa2peX3zvbtqiRmCfn5'
 };
 
 /*

@@ -46,7 +46,7 @@ export class ResultsComponent implements OnInit {
           "MobileLink": "http://m.accuweather.com/en/us/new-york-ny/10007/current-weather/349727",
           "Link": "http://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727"
         };
-        // this.generatPrompt()
+        this.generatPrompt()
         this.forecastData = {
           "Headline": {
             "EffectiveDate": "2024-07-10T08:00:00+03:00",

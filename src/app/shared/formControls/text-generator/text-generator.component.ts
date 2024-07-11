@@ -8,6 +8,8 @@ import { OpenAIService } from 'src/app/core/services/openai.service';
 })
 export class TextGeneratorComponent {
   @Input() prompt: string;
+  @Input() icon: string;
+
   generatedText: string = '';
 
   constructor(private openaiService: OpenAIService) { }

@@ -9,3 +9,9 @@ mat-progress-bar .mat-progress-bar-buffer {
 mat-progress-bar .mat-progress-bar-fill::after {
     background: #8fbd11;
 }
+
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
