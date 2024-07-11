@@ -1,20 +1,20 @@
-
-<mat-form-field appearance="fill">
-    <mat-label>location</mat-label>
-    <input type="text" matInput [formControl]="locationCtrl" [matAutocomplete]="auto" appEnglishOnly>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLocation"
-        (optionSelected)="onLocationSelected($event)">
-        <mat-option *ngFor="let location of filteredLocations | async" [value]="location">
-            {{ location.LocalizedName }}
-        </mat-option>
-    </mat-autocomplete>
-    <mat-error *ngIf="locationCtrl.hasError('nonEnglish')">
-        Only English letters are allowed.
-    </mat-error>
-</mat-form-field>
-
-<ng-container *ngIf="selectedLocation">
-    <app-favorite-button [location]="selectedLocation"></app-favorite-button>
-</ng-container>
-
+<div class="grid grid-cols-3 gap-4">
+    <mat-form-field appearance="fill">
+        <mat-label>location</mat-label>
+        <input type="text" matInput [formControl]="locationCtrl" [matAutocomplete]="auto" appEnglishOnly>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLocation"
+            (optionSelected)="onLocationSelected($event)">
+            <mat-option *ngFor="let location of filteredLocations | async" [value]="location">
+                {{ location.LocalizedName }}
+            </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="locationCtrl.hasError('nonEnglish')">
+            Only English letters are allowed.
+        </mat-error>
+    </mat-form-field>
+    <ng-container *ngIf="selectedLocation">
+        <app-favorite-button [location]="selectedLocation"></app-favorite-button>
+    </ng-container>
+</div>
+<br>
 <router-outlet></router-outlet>

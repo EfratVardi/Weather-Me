@@ -12,33 +12,36 @@ import { MyLocation } from 'src/app/shared/models/location.model';
 })
 export class SearchPage {
   locationCtrl = new FormControl();
-  filteredLocations: Observable<MyLocation[]>|null=null;
+  filteredLocations: Observable<MyLocation[]> | null = null;
   selectedLocation: MyLocation | null = null;
 
   constructor(private locationService: LocationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   const defaultLocationKey = params['locationKey'];
-    //   if (defaultLocationKey) {
-    //     this.locationCtrl.setValue(defaultLocationKey);
+    this.loadDefaultLocation();
 
-    //     // Optionally fetch default location details from API using locationService
-    //     // this.locationService.getLocationDetails(defaultLocationKey).subscribe(
-    //     //   (location: MyLocation) => {
-    //     //     this.defaultLocation = location;
-    //     //     this.locationCtrl.setValue(this.defaultLocation.LocalizedName);
-    //     //   },
-    //     //   error => {
-    //     //     console.error('Error fetching default location:', error);
-    //     //   }
-    //     // );
-    //   }
-    // });
     this.filteredLocations = this.locationCtrl.valueChanges.pipe(
       debounceTime(300),
       switchMap(value => value.length >= 2 ? this.locationService.getAutocompleteLocation(value) : [])
     );
+  }
+
+  loadDefaultLocation() {
+    this.route.paramMap.subscribe(params => {
+      const locationKey = params.get('locationKey');
+      if (locationKey) {
+        this.locationService.getLocationByKey(locationKey).subscribe(
+          (location: MyLocation) => {
+            this.selectedLocation = location;
+            this.locationCtrl.setValue(location);
+            this.loadWeather()
+          },
+          (error) => {
+            console.error('Error loading default location:', error);
+          }
+        );
+      }
+    });
   }
 
   displayLocation(location: MyLocation): string {
@@ -47,9 +50,11 @@ export class SearchPage {
 
   onLocationSelected(event: any) {
     this.selectedLocation = event.option.value;
-    this.router.navigate([`/search/results/${this.selectedLocation?.Key}/${this.selectedLocation?.LocalizedName}`]);
+    this.loadWeather()
   }
 
-
+  loadWeather() {
+    this.router.navigate([`/search/results/${this.selectedLocation?.Key}/${this.selectedLocation?.LocalizedName}`]);
+  }
 }
 

@@ -1,16 +1,16 @@
-<h1 class="text-sm">
-    {{localizedName}}
-</h1>
 <div class="grid grid-cols-5 gap-4">
-    <div></div>
+    <div class="text-lg">
+        {{localizedName}}
+    </div>
     <div class="col-span-5">
-        <app-card [subtitle]="currentWeather.Temperature.Metric.Value+' °C'"
-            [title]="currentWeather.LocalObservationDateTime | DateFormat" [icon]="currentWeather.WeatherIcon"
-            [content]="currentWeather.WeatherText">
+        <app-card [title]="currentWeather?.Temperature?.Metric?.Value+' °C'"
+            [subtitle]="currentWeather?.LocalObservationDateTime | DateFormat" [icon]="currentWeather?.WeatherIcon"
+            [content]="currentWeather?.WeatherText">
         </app-card>
     </div>
-    <app-card class="col-span-1" *ngFor="let day of forecastData.DailyForecasts"
-        [subtitle]="day.Temperature.Minimum.Value+' °C'" [title]="day.Date | DateFormat" [icon]="day.Day.IconPhrase">
+    <app-card class="col-span-1" *ngFor="let day of forecastData?.DailyForecasts"
+        [title]="day.Temperature.Minimum.Value+' °C'" [subtitle]="day.Date | DateFormat" [icon]="day.Day.IconPhrase">
     </app-card>
-    <app-text-generator class="col-span-3 col-start-2" *ngIf="prompt" [prompt]="prompt" [icon]="'home'"></app-text-generator>
+    <app-text-generator class="col-span-3 col-start-2" *ngIf="prompt" [prompt]="prompt"
+        [icon]="'home'"></app-text-generator>
 </div>

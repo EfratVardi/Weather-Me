@@ -19,11 +19,9 @@ export class FavoritesComponent implements OnInit {
 
   handleChipRemoved(locationKey: string) {
     this.favoritesService.removeFromFavorites(locationKey)
-    this.favoritesList = this.favoritesService.getFavorites();
   }
 
   handleChipClicked(locationKey: string) {
-    const localizedName = this.favoritesList.find(favorites => favorites.Key == locationKey).LocalizedName;
-    this.router.navigate([`/search/results/${locationKey}/${localizedName}`]);
+    this.router.navigate([`/search/${locationKey}`]);
   }
 }

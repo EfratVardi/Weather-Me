@@ -25,7 +25,7 @@ export class FavoritesService {
   }
 
   removeFromFavorites(locationKey: string): void {
-    this.favorites.filter(location => location.Key !== locationKey);
+    this.favorites = this.favorites.filter(location => location.Key !== locationKey);
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.favorites));
   }
 
