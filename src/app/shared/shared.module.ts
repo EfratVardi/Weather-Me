@@ -14,12 +14,14 @@ import { ChipsComponent } from './formControls/chips/chips.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { TextGeneratorComponent } from './formControls/text-generator/text-generator.component';
 import { OpenAIService } from '../core/services/openai.service';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
     CardComponent,
     ChipsComponent,
-    TextGeneratorComponent
+    TextGeneratorComponent,
+    DateFormatPipe
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { OpenAIService } from '../core/services/openai.service';
     MatInputModule,
     CardComponent,
     ChipsComponent,
-    TextGeneratorComponent
+    TextGeneratorComponent,
+    DateFormatPipe
   ]
 })
 export class SharedModule { }

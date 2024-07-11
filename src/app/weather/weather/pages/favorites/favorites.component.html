@@ -1,2 +1,2 @@
 favorites
-<app-chips [chipsList]="favoritesList" (chipRemoved)="handleChipRemoved($event)"></app-chips>
+<app-chips [chipsList]="favoritesList" (chipClicked)="handleChipClicked($event)" (chipRemoved)="handleChipRemoved($event)"></app-chips>
